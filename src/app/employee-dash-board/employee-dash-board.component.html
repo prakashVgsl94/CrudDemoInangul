@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of employeeData">
+    <tr *ngFor="let row of data">
       <td>{{row.id}}</td>
       <td>{{row.firstname}}</td>
       <td>{{row.lastname}}</td>
@@ -29,8 +29,9 @@
       <td>{{row.mobileno}}</td>
       <td>{{row.salary}}</td>
       <td>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
-        <!-- <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button> -->
+        <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button> -->
+        <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+        <button (click)="EditEmployee(row)" class="btn btn-danger mx-3">Edit</button>
       </td>
     </tr>
   </tbody>
@@ -49,42 +50,46 @@
       </div>
 
       <div class="modal-body">
-        <form [formGroup]="EmpForm" (ngSubmit)="this[EventValue]()">  
+        <!--  <form [formGroup]="EmpForm" (ngSubmit)="this[EventValue]()"> -->
+
+        <form [formGroup]="EmpForm">
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">First Name</label>
             <input type="text" formControlName="firstname" class="form-control" id="exampleInputEmail1">
+
+            <div *ngIf="EmpForm.controls.firstname.valid || EmpForm.controls.firstname.touched" class="text-danger">
+              <div *ngIf="(EmpForm.controls.firstname.errors)?.required">firstname is required</div>
+            </div>
           </div>
-          <div *ngIf="submitted && EmpForm.controls.firstname.errors" class="text-danger">  
-            <div *ngIf="EmpForm.controls.firstname.errors.required">firstname is required</div>  
-          </div> 
 
           <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Last Name</label>
-              <input type="text" formControlName="lastname" class="form-control" id="exampleInputPassword1">
-            </div>
+            <label for="exampleInputPassword1" class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="exampleInputPassword1">
+          </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Email ID</label>
-              <input type="mail" formControlName="emailid" class="form-control" id="exampleInputPassword1">
-            </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email ID</label>
+            <input type="mail" formControlName="emailid" class="form-control" id="exampleInputPassword1">
+          </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Mobile No</label>
-              <input type="text" formControlName="mobileno" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Salary</label>
-              <input type="text" formControlName="salary" class="form-control" id="exampleInputPassword1">
-            </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mobile No</label>
+            <input type="text" formControlName="mobileno" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Salary</label>
+            <input type="text" formControlName="salary" class="form-control" id="exampleInputPassword1">
+          </div>
 
         </form>
-        <div class="modal-footer">
-          <button type="button" id="cancel" class="btn btn-secondary()" data-bs-dismiss="modal">Close</button>
-          <button type="butto" (click)="postEmployeeDetails()" class="btn btn-primary">Add</button>
-<!--           <button type="button" (click)="updateEmployeeDetails()" class="btn btn-primary">Update</button> -->
-        </div>
+          <div class="modal-footer">
+            <button type="button" id="cancel" class="btn btn-secondary()" data-bs-dismiss="modal">Close</button>
+            <!--           <button type="butto" (click)="postEmployeeDetails()" class="btn btn-primary">Add</button>-->
+            <!--     <button type="button" (click)="updateEmployeeDetails()" class="btn btn-primary">Update</button> -->
+          </div>
+        
       </div>
-    </div>
-  </div>
+   </div>
+ </div>
 </div>

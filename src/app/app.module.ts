@@ -7,14 +7,16 @@ import { EmployeeDashBoardComponent } from './employee-dash-board/employee-dash-
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {ApiService} from './shared/api.service';
+
 //import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeDashBoardComponent,
-    //ReactiveFormComponent,
+    EmployeeDashBoardComponent
+    
+    /* ReactiveFormComponent, */
     
   ],
   imports: [
